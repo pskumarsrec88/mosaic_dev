@@ -33,22 +33,25 @@ class Photo < ActiveRecord::Base
       p i
       i=i+1
       image = Magick::ImageList.new  
-      urlimage = open(photo+"?width=50&height=50") 
-      img = image.from_blob(urlimage.read)
-    
-      red = green = blue = 0
-      img.each_pixel do |p, x, y|
-        red += p.red
-        green += p.green
-        blue += p.blue
-      end
-      num_pixels = img.bounding_box.width * img.bounding_box.height
-      mean_color = {
-      :red => red / num_pixels,
-      :green=> green / num_pixels,
-      :blue=> blue / num_pixels
-      }
-      collect_mean_color[photo] = mean_color
+      begin
+        urlimage = open(photo+"?width=50&height=50") 
+        img = image.from_blob(urlimage.read)
+      
+        red = green = blue = 0
+        img.each_pixel do |p, x, y|
+          red += p.red
+          green += p.green
+          blue += p.blue
+        end
+        num_pixels = img.bounding_box.width * img.bounding_box.height
+        mean_color = {
+        :red => red / num_pixels,
+        :green=> green / num_pixels,
+        :blue=> blue / num_pixels
+        }
+        collect_mean_color[photo] = mean_color
+      rescue 
+      end			
     end
     mean_array << collect_mean_color
     return mean_array
