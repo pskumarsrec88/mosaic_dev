@@ -22,7 +22,7 @@ task :mosaic => :environment do
 	tile = Magick::Rectangle.new("0".to_i, "0".to_i, 0, 0)
 	# Here collect the Friends profile images
 	
-	@photo=(user.friends).map(&:picture)#.take(100)
+	@photo=(user.friends).map(&:picture).take(100)
 		
 	# Pass the Friends images and find them mean colors
 	mean_color = Photo.fetch_mean_color(@photo)
