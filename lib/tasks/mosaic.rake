@@ -34,12 +34,12 @@ task :mosaic => :environment do
 			image = Magick::ImageList.new  
 			begin
 				urlimage = open(photo_path+"?width=50&height=50")
-				photo = image.from_blob(urlimage.read)
+				p photo = image.from_blob(urlimage.read)
 				mosaic_images << photo.crop_resized!("50".to_i, "50".to_i)
 				tile.x = col * mosaic_images.columns
 				tile.y = row * mosaic_images.rows
 				mosaic_images.page = tile
-      rescue OpenURI::HTTPError
+      rescue
       end						
 			i += 1
 		end
