@@ -1,10 +1,10 @@
-<% if @profile_picture.present?%>
+<% if @profile_picture.present? %>
 <h1>Profile</h1>
 <%= image_tag @profile_picture+"?width=200&height=200"%>
 <%end%>
-<% if @cover_picture.present?%>
+<% if @cover_picture.present? %>
 <h1>cover</h1>
-<%= image_tag @cover_picture%>
+<%= image_tag @cover_picture %>
 <%end%>
 <h1>Friends</h1>
 <% @friend_photo.each do |friend_photo| %>
