@@ -33,7 +33,7 @@ task :mosaic => :environment do
 			p photo_path = Photo.match_pixel(source_pixels[i],mean_color)
 			image = Magick::ImageList.new  
 			begin
-				urlimage = open(photo_path+"?width=100&height=100")
+				urlimage = open(photo_path+"?width=25&height=25")
 				photo = image.from_blob(urlimage.read)
 				mosaic_images << photo.crop_resized!("25".to_i, "25".to_i)
 				tile.x = col * mosaic_images.columns
