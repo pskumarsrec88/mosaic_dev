@@ -1,20 +1,20 @@
 <% if @profile_picture.present? %>
 <h1>Profile</h1>
-<%= image_tag @profile_picture+"?width=200&height=200"%>
+<%= image_tag @profile_picture+"?width=200&height=200", :alt => "profile", :title=> "Profile Picture" %>
 <%end%>
 <% if @cover_picture.present? %>
 <h1>cover</h1>
-<%= image_tag @cover_picture %>
+<%= image_tag @cover_picture, :alt => "Cover", :title => "Cover Photo" %>
 <%end%>
 <h1>Friends</h1>
 <% @friend_photo.each do |friend_photo| %>
-	<%= image_tag friend_photo+"?width=100&height=100"%>
+	<%= image_tag friend_photo+"?width=100&height=100", :alt => "Friends", :title => "Friends profile" %>
 <%end%>
 <h1>photo Tags</h1>
 <% @photo.each do |photo| %>
-	<%= image_tag photo%>
+	<%= image_tag photo, :alt => "Tagged images", :title => "Tagged images" %>
 <%end%>
 <h1>Photo uploaded</h1>
 <% @album.each do |album| %>
-	<%= image_tag album%>
+	<%= image_tag album, :alt => "Uploaded images", :title => "Uploaded images" %>
 <%end%>
