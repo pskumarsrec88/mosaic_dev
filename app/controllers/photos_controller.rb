@@ -31,8 +31,9 @@ class PhotosController < ApplicationController
     user = FbGraph::User.new('me', :access_token => User.first.token)
     user = user.fetch(:fields => "picture,cover, photo")
     
-    @profile_picture = user.picture
-    @cover_picture = user.raw_attributes[:cover][:source]
+    @profile_picture = user.picture unless user.picture.nil?
+
+    @cover_picture = user.raw_attributes[:cover][:source] unless user.raw_attributes[:cover].nil?
     
     #To fetch all friends photos
     @friend_photo= (user.friends).map(&:picture)    
