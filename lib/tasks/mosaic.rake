@@ -1,5 +1,5 @@
 desc 'Builds a mosaic'
-task :mosaic, [:image_md5, :tile_width, :tile_height] => :environment do |task, args|	
+task :mosaic => :environment do	
 
 	# get the login user Profile image
 	user = FbGraph::User.new('me', :access_token => User.first.token)
