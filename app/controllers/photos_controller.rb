@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  require 'mosaicc'
   # GET /photos
   # GET /photos.json
   
@@ -16,6 +17,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+
     @photo = Photo.find(params[:id])
 
     respond_to do |format|
@@ -29,6 +31,7 @@ class PhotosController < ApplicationController
   def new
     
     user = FbGraph::User.new('me', :access_token => User.first.token)
+    
     user = user.fetch(:fields => "picture,cover, photo")
     
     @profile_picture = user.picture unless user.picture.nil?
@@ -56,7 +59,7 @@ class PhotosController < ApplicationController
         #~ @album << photo['source']
       #~ end
     #~ end
-    
+    Mosaicc.delay.image_perform
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @album }
