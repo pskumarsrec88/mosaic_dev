@@ -44,7 +44,7 @@ class Mosaicc
 				end
 			end
 			mosaic = mosaic_images.mosaic
-			mosaic.write(rand(1..199).to_s+"mosaic_photo.jpg")
+			mosaic.write("mosaic_photo"+rand(1..199).to_s+".jpg")
 	end
 end	
 	
