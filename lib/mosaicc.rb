@@ -1,6 +1,5 @@
 class Mosaicc
-	def self.image_perform
-
+	def image_perform
 			# get the login user Profile image
 			user = FbGraph::User.new('me', :access_token => User.first.token)
 			user = user.fetch(:fields => "picture,cover, photo")
@@ -10,7 +9,7 @@ class Mosaicc
 			urlimage = open(profile_picture) 
 			source = image.from_blob(urlimage.read)
 			
-			source_width = 50
+			source_width = 5
 			source.resize_to_fit! source_width, (source.rows/source.columns) * source_width
 			
 			source_pixels = []
@@ -22,7 +21,7 @@ class Mosaicc
 			tile = Magick::Rectangle.new("0".to_i, "0".to_i, 0, 0)
 			# Here collect the Friends profile images
 			
-			@photo=(user.friends).map(&:picture).take(100)
+			@photo=(user.friends).map(&:picture).take(10)
 				
 			# Pass the Friends images and find them mean colors
 			mean_color = Photo.fetch_mean_color(@photo)
@@ -45,7 +44,7 @@ class Mosaicc
 				end
 			end
 			mosaic = mosaic_images.mosaic
-			mosaic.write("mosaic_photo.jpg")
+			mosaic.write(rand(1..199).to_s+"mosaic_photo.jpg")
 	end
 end	
 	

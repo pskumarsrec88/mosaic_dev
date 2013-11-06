@@ -34,7 +34,7 @@ class Photo < ActiveRecord::Base
       i=i+1
       image = Magick::ImageList.new  
       begin
-        urlimage = open(photo+"?width=50&height=50") 
+        urlimage = open(photo+"?width=25&height=25") 
         img = image.from_blob(urlimage.read)
       
         red = green = blue = 0

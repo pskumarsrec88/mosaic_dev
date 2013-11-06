@@ -59,7 +59,8 @@ class PhotosController < ApplicationController
         #~ @album << photo['source']
       #~ end
     #~ end
-    Mosaicc.delay.image_perform
+    mosaic = Mosaicc.new
+    mosaic.delay.image_perform
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @album }
