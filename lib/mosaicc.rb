@@ -1,5 +1,5 @@
 class Mosaicc
-	def image_perform
+	def self.image_perform
 			# get the login user Profile image
 			user = FbGraph::User.new('me', :access_token => User.first.token)
 			user = user.fetch(:fields => "picture,cover, photo")
